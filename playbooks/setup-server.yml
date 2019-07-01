@@ -1,0 +1,13 @@
+- hosts: all
+  tasks:
+    - name: add ppa repository for openjdk
+      apt_repository:
+        repo: ppa:openjdk-r/ppa
+
+    - name: install packages
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+          - openjdk-11-jre-headless
+          - unzip
