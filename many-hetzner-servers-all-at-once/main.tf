@@ -28,7 +28,7 @@ resource "hcloud_server" "jenkins" {
 resource null_resource "local-ssh-setup" {
   count = length(hcloud_server.jenkins)
   provisioner "local-exec" {
-    command = "sleep20; ssh-keygen -R ${hcloud_server.jenkins[count.index].ipv4_address}; ssh-keyscan -t rsa -H ${hcloud_server.jenkins[count.index].ipv4_address} >> ~/.ssh/known_hosts"
+    command = "sleep 20; ssh-keygen -R ${hcloud_server.jenkins[count.index].ipv4_address}; ssh-keyscan -t rsa -H ${hcloud_server.jenkins[count.index].ipv4_address} >> ~/.ssh/known_hosts"
   }
 
   depends_on = [
